@@ -5,13 +5,13 @@ layout: nil
 <feed xmlns="http://www.w3.org/2005/Atom">
  
  <title>Tom Preston-Werner</title>
- <link href="http://tom.preston-werner.com/atom.xml" rel="self"/>
- <link href="http://tom.preston-werner.com/"/>
+ <link href="http://mjtbl.top/atom.xml" rel="self"/>
+ <link href="http://mjtbl.top/"/>
  <updated>{{ site.time | date_to_xmlschema }}</updated>
- <id>http://tom.preston-werner.com/</id>
+ <id>mjtbl.top</id>
  <author>
-   <name>Tom Preston-Werner</name>
-   <email>tom@mojombo.com</email>
+   <name>mengjiangtao</name>
+   <email>meng_jiangtao@163.com</email>
  </author>
 
  {% for post in site.posts %}
