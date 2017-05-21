@@ -12,19 +12,18 @@ title: Lua implement simple linked list.
 使用lua实现基本的增加删除功能。
 
 ```
-local list = {}
+list = {}
 
---local function initList()
---  list.data = 0
---  list.next = nil
---end
+function list.new()
+  return {}
+end
 
-local function addToTrail(d)
+function list.Add(self,d)
   local ll = {}
   ll.data = d
   ll.next = nil
   local l = {}
-  l = list
+  l = self
   if l.next == nil then
       l.next = ll
   else
@@ -35,15 +34,15 @@ local function addToTrail(d)
   end
 end
 
-local function addToHead(d)
+function list.AddToHead(self,d)
   local ll = {}
   ll.data = d
-  ll.next = list.next
-  list.next = ll
+  ll.next = self.next
+  self.next = ll
 end
 
-local function getData(i)
-  if not list then
+function list.GetData(self,i)
+  if not self then
 --    io.write("list is null","\n")
     return
   end
@@ -53,7 +52,7 @@ local function getData(i)
     return
   end
   
-  local l = list
+  local l = self
   local k = 0
   while l do
     l = l.next
@@ -64,12 +63,12 @@ local function getData(i)
   end
 end
 
-local function getLen()
-  if not list then
+function list.GetLen(self)
+  if not self then
 --    io.write("list is null","\n")
     return
   end
-  local l = list.next
+  local l = self.next
   local k = 0
   while l do
     l = l.next
@@ -78,7 +77,7 @@ local function getLen()
   return k
 end
 
-local function insert(i,d)
+function list.Insert(self,i,d)
   if i < 1 then
 --    print("Wrong index.")
     return
@@ -105,7 +104,7 @@ local function insert(i,d)
 
 end
 
-local function Delete(i)
+function list.Delete(self,i)
   if i < 1 then
 --    print("Wrong index.")
     return
@@ -119,7 +118,7 @@ local function Delete(i)
     --Head
     local ll = lnext
     lcurrent = nil
-    list.next = ll  
+    self.next = ll  
   elseif lnext == nil then
     --Trail
     lcurrent = nil
@@ -130,31 +129,31 @@ local function Delete(i)
   end
 end
 
-local function Clear()
-  if not list then
+function list.Clear(self)
+  if not self then
 --    io.write("list is null","\n")
     return
   end
   
   while true do
-    firstNode = list.next
+    firstNode = self.next
     if not firstNode then
       break
     end
     t = firstNode.next
-    list.next = nil
-    list.data = 0
-    list.next = t
+    self.next = nil
+    self.data = 0
+    self.next = t
   end
 end
 
-local function Destory()
+function list.Destory(self)
   Clear()
-  list = nil
+  self = nil
 end
 
-local function Display()
-  local l = list.next
+function list.Display(self)
+  local l = self.next
   while l do
     io.write(l.data,"\n")
     l = l.next
