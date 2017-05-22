@@ -14,8 +14,18 @@ title: Lua implement simple linked list.
 ```
 list = {}
 
+local mt = {}
+
 function list.new()
-  return {}
+  local set = {}
+  mt.__add = list.PPlus
+  setmetatable(set,mt)
+  return set
+end
+
+function list.PPlus(lp,ln)
+  list.GetData(lp,list.GetLen(lp)).next = list.GetData(ln,1)
+  return lp
 end
 
 function list.Add(self,d)
@@ -152,11 +162,26 @@ function list.Destory(self)
   self = nil
 end
 
-function list.Display(self)
-  local l = self.next
+function list.Display(s)
+  local l = s.next
   while l do
     io.write(l.data,"\n")
     l = l.next
   end
 end
+
+
+
+local l1 =  list.new()
+list.Add(l1,1)
+list.Display(l1)
+
+local l2 = list.new()
+list.Add(l2,2)
+list.Add(l2,"123")
+list.Add(l2,"456")
+list.Display(l2)
+
+local l3 = l1 + l2
+list.Display(l3)
 ```
