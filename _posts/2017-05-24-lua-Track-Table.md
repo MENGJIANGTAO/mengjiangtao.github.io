@@ -41,4 +41,17 @@ t = track(t)
 t[1] = 123
 print(t[1])
 
+-- make a table read-only.
+local function readOnly(t)
+  local proxy = {}
+  local mt = {
+    __index = t,
+    __newindex = 
+    function(t,k,v)
+      error("attempt to update a read-only table.",2)
+    end
+  }
+  setmetatable(proxy,mt)
+  return proxy
+end
 ```
